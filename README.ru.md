@@ -7,6 +7,7 @@
 ![Python](https://img.shields.io/badge/python-3.10%2B-blue)
 ![Tests](https://img.shields.io/badge/tests-42%20passing-brightgreen)
 ![License](https://img.shields.io/badge/license-MIT-green)
+[![Live demo](https://img.shields.io/badge/live%20demo-open-FF4B4B?logo=streamlit&logoColor=white)](https://abtest-platform777.streamlit.app/)
 
 🇬🇧 **[English README →](README.md)**
 
