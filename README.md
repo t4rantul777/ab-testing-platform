@@ -4,7 +4,7 @@
 > online experiments — with sequential testing and power analysis, not just a
 > single t-test.
 
-[![CI](https://github.com/your-username/abtest-platform/actions/workflows/ci.yml/badge.svg)](https://github.com/your-username/abtest-platform/actions)
+[![CI](https://github.com/t4rantul777/ab-testing-platform/actions/workflows/ci.yml/badge.svg)](https://github.com/t4rantul777/ab-testing-platform/actions)
 ![Python](https://img.shields.io/badge/python-3.10%2B-blue)
 ![Tests](https://img.shields.io/badge/tests-42%20passing-brightgreen)
 ![License](https://img.shields.io/badge/license-MIT-green)
@@ -70,8 +70,8 @@ soon as the band clears zero:
 ## Quick start
 
 ```bash
-git clone https://github.com/your-username/abtest-platform.git
-cd abtest-platform
+git clone https://github.com/t4rantul777/ab-testing-platform.git
+cd ab-testing-platform
 pip install -e ".[dev]"     # or: pip install -r requirements.txt
 
 pytest                      # run the 42 tests
@@ -97,7 +97,7 @@ print(analyze(exp.control, exp.treatment, MetricType.BINARY).summary())
 ## Project structure
 
 ```
-abtest-platform/
+ab-testing-platform/
 ├── src/abtest/              # the library (import abtest)
 │   ├── datamodel.py         # ExperimentConfig, TestResult, enums
 │   ├── simulation.py        # batch + streaming data generation
