@@ -8,38 +8,41 @@ import streamlit as st
 
 theme.page_config("History", "🗂️")
 
+from i18n import language_selector, t  # noqa: E402
 from abtest import ABTestStore  # noqa: E402
 
-st.title("🗂️ Experiment History")
-st.caption("Every saved run is stored in a local SQLite database (real SQL, no server).")
+language_selector()
+
+st.title(t("hist_title"))
+st.caption(t("hist_caption"))
 
 with ABTestStore(theme.DB_PATH) as store:
     board = store.experiment_scoreboard()
     experiments = store.list_experiments()
 
 if not board:
-    st.info("No experiments saved yet. Open the **Simulator** and click "
-            "*Save this experiment to history*.")
+    st.info(t("hist_empty"))
     st.stop()
 
 df = pd.DataFrame(board)
 if not df.empty:
-    df["verdict"] = df["significant"].map({1: "✅ significant", 0: "❌ not sig.",
-                                           None: "—"})
+    df["verdict"] = df["significant"].map({1: t("hist_v_sig"), 0: t("hist_v_nsig"),
+                                           None: t("hist_v_none")})
     show = df[["id", "name", "metric_type", "baseline", "effect",
                "n_control", "test_name", "p_value", "verdict", "created_at"]]
     show = show.rename(columns={
-        "id": "ID", "name": "Experiment", "metric_type": "Metric",
-        "baseline": "Baseline", "effect": "True effect", "n_control": "n/arm",
-        "test_name": "Last test", "p_value": "p-value", "verdict": "Verdict",
-        "created_at": "Saved at",
+        "id": t("hist_c_id"), "name": t("hist_c_name"), "metric_type": t("hist_c_metric"),
+        "baseline": t("hist_c_baseline"), "effect": t("hist_c_effect"),
+        "n_control": t("hist_c_narm"), "test_name": t("hist_c_test"),
+        "p_value": t("hist_c_p"), "verdict": t("hist_c_verdict"),
+        "created_at": t("hist_c_saved"),
     })
-    st.dataframe(show, use_container_width=True, hide_index=True)
+    st.dataframe(show, width='stretch', hide_index=True)
 
-st.metric("Experiments logged", len(experiments))
+st.metric(t("hist_logged"), len(experiments))
 
 st.divider()
-st.subheader("Underlying SQL")
+st.subheader(t("hist_sub_sql"))
 st.code(
     """-- one row per experiment, joined to its most recent test result
 SELECT e.id, e.name, e.metric_type, e.baseline, e.effect,

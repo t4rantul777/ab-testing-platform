@@ -61,3 +61,21 @@ def test_power_runs():
 def test_history_runs():
     at = AppTest.from_file(str(APP_DIR / "pages" / "5_History.py")).run(timeout=30)
     assert not at.exception
+
+
+def test_language_switch_to_russian():
+    """Switching the language selector to Russian re-renders the UI in Russian."""
+    at = AppTest.from_file(str(APP_DIR / "streamlit_app.py")).run(timeout=30)
+    # default language is English
+    assert any("A/B Testing" in tt.value for tt in at.title)
+    # flip the sidebar language picker to Russian and re-run
+    at.selectbox(key="lang_widget").set_value("Русский").run(timeout=30)
+    assert not at.exception
+    assert any("Платформа" in tt.value for tt in at.title)
+
+
+def test_simulator_russian_runs():
+    at = AppTest.from_file(str(APP_DIR / "pages" / "1_Simulator.py")).run(timeout=30)
+    at.selectbox(key="lang_widget").set_value("Русский").run(timeout=30)
+    assert not at.exception
+    assert any("Симулятор" in tt.value for tt in at.title)

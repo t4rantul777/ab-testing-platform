@@ -6,7 +6,7 @@
 
 [![CI](https://github.com/your-username/abtest-platform/actions/workflows/ci.yml/badge.svg)](https://github.com/your-username/abtest-platform/actions)
 ![Python](https://img.shields.io/badge/python-3.10%2B-blue)
-![Tests](https://img.shields.io/badge/tests-40%20passing-brightgreen)
+![Tests](https://img.shields.io/badge/tests-42%20passing-brightgreen)
 ![License](https://img.shields.io/badge/license-MIT-green)
 
 🇷🇺 **[Русская версия README →](README.ru.md)**
@@ -43,8 +43,8 @@ Always-valid inference  ->  significant after 9,803 obs (80% fewer than 50,000)
 | **Sequential** | Wald SPRT · always-valid confidence sequences (mixture SPRT) · Pocock & O'Brien-Fleming group-sequential boundaries |
 | **Power & MDE** | Power, required sample size, minimum detectable effect, and power curves |
 | **Persistence** | Every run logged to a local **SQLite** database (real SQL, incl. a window-function scoreboard query) |
-| **App** | A 5-page **Streamlit** dashboard tying it all together |
-| **Quality** | **40 tests** — statistical correctness vs. references, error-rate control, and Streamlit page smoke tests |
+| **App** | A 5-page **Streamlit** dashboard with an in-app **English / Russian** language switcher |
+| **Quality** | **42 tests** — statistical correctness vs. references, error-rate control, and Streamlit page smoke tests |
 
 ## Screenshots
 
@@ -74,7 +74,7 @@ git clone https://github.com/your-username/abtest-platform.git
 cd abtest-platform
 pip install -e ".[dev]"     # or: pip install -r requirements.txt
 
-pytest                      # run the 40 tests
+pytest                      # run the 42 tests
 python examples/quickstart.py
 streamlit run app/streamlit_app.py
 ```
@@ -108,7 +108,7 @@ abtest-platform/
 ├── app/                     # Streamlit multipage dashboard
 │   ├── streamlit_app.py     # home
 │   └── pages/               # Simulator · Significance · Sequential · Power · History
-├── tests/                   # 40 pytest tests (stats + app smoke)
+├── tests/                   # 42 pytest tests (stats + app smoke)
 ├── scripts/make_figures.py  # regenerates the README figures
 ├── examples/quickstart.py   # end-to-end API tour
 └── docs/methodology.md      # the maths behind every module
